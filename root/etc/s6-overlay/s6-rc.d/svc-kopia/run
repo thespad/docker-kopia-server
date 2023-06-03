@@ -1,0 +1,27 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+if [[ ${KOPIA_HTTPS,,} == "true" ]]; then
+    exec \
+        s6-notifyoncheck -d -n 300 -w 1000 \
+        s6-setuidgid abc /app/kopia/kopia server start \
+            --disable-csrf-token-checks \
+            --tls-key-file=/config/keys/kopia.key \
+            --tls-cert-file=/config/keys/kopia.crt \
+            --enable-actions \
+            --address=0.0.0.0:51515 \
+            --refresh-interval="${REFRESH_INTERVAL:-300s}" \
+            --server-username="${KOPIA_UI_USERNAME:-kopia}" \
+            --server-password="${KOPIA_UI_PASSWORD}"
+else
+    exec \
+        s6-notifyoncheck -d -n 300 -w 1000 \
+        s6-setuidgid abc /app/kopia/kopia server start \
+            --disable-csrf-token-checks \
+            --insecure \
+            --enable-actions \
+            --address=0.0.0.0:51515 \
+            --refresh-interval="${REFRESH_INTERVAL:-300s}" \
+            --server-username="${KOPIA_UI_USERNAME:-kopia}" \
+            --server-password="${KOPIA_UI_PASSWORD}"
+fi
