@@ -204,4 +204,5 @@ docker build \
 
 ## Versions
 
+* **12.06.23:** - Fix arm64 build.
 * **03.05.23:** - Initial Release.
