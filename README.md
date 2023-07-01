@@ -204,5 +204,6 @@ docker build \
 
 ## Versions
 
+* **01.07.23:** - Add GNU findutils.
 * **12.06.23:** - Fix arm64 build.
 * **03.05.23:** - Initial Release.
