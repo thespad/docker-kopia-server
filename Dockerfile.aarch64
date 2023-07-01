@@ -26,6 +26,7 @@ RUN \
   echo "**** install packages ****" && \
   apk add  --no-cache \
     docker-cli \
+    findutils \
     fuse \
     openssl \
     rclone \
