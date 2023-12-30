@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.18
+FROM ghcr.io/linuxserver/baseimage-alpine:3.19
 
 # set version label
 ARG BUILD_DATE
@@ -31,7 +31,7 @@ RUN \
     openssl \
     rclone \
     sqlite && \
-  echo "**** install kopia ****" && \  
+  echo "**** install kopia ****" && \
   if [ -z ${APP_VERSION+x} ]; then \
     APP_VERSION=$(curl -s https://api.github.com/repos/kopia/kopia/releases/latest \
     | awk '/tag_name/{print $4;exit}' FS='[""]'); \

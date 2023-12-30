@@ -25,7 +25,6 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | latest |
 | arm64 | ✅ | latest |
-| armhf | ❌ | latest |
 
 ## Application Setup
 
@@ -204,6 +203,7 @@ docker build \
 
 ## Versions
 
+* **30.12.23:** - Rebase to Alpine 3.19.
 * **01.07.23:** - Add GNU findutils.
 * **12.06.23:** - Fix arm64 build.
 * **03.05.23:** - Initial Release.
