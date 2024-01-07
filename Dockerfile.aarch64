@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.18
+FROM ghcr.io/linuxserver/baseimage-alpine:3.19
 
 # set version label
 ARG BUILD_DATE
@@ -10,7 +10,7 @@ LABEL build_version="Version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="thespad"
 LABEL org.opencontainers.image.source="https://github.com/thespad/docker-kopia-server"
 LABEL org.opencontainers.image.url="https://github.com/thespad/docker-kopia-server"
-LABEL org.opencontainers.image.description="An adult movie collection manager for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new movies and will interface with clients and indexers to grab, sort, and rename them."
+LABEL org.opencontainers.image.description="A fast and secure open-source backup/restore tool that allows you to create encrypted snapshots of your data and save the snapshots to remote or cloud storage of your choice, to network-attached storage or server, or locally on your machine."
 
 ENV TERM="xterm-256color" \
   LC_ALL="C.UTF-8" \
@@ -31,7 +31,7 @@ RUN \
     openssl \
     rclone \
     sqlite && \
-  echo "**** install kopia ****" && \  
+  echo "**** install kopia ****" && \
   if [ -z ${APP_VERSION+x} ]; then \
     APP_VERSION=$(curl -s https://api.github.com/repos/kopia/kopia/releases/latest \
     | awk '/tag_name/{print $4;exit}' FS='[""]'); \
