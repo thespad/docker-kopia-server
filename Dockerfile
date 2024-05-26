@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.19
+FROM ghcr.io/linuxserver/baseimage-alpine:3.20
 
 # set version label
 ARG BUILD_DATE
@@ -11,6 +11,7 @@ LABEL maintainer="thespad"
 LABEL org.opencontainers.image.source="https://github.com/thespad/docker-kopia-server"
 LABEL org.opencontainers.image.url="https://github.com/thespad/docker-kopia-server"
 LABEL org.opencontainers.image.description="A fast and secure open-source backup/restore tool that allows you to create encrypted snapshots of your data and save the snapshots to remote or cloud storage of your choice, to network-attached storage or server, or locally on your machine."
+LABEL org.opencontainers.image.authors="thespad"
 
 ENV TERM="xterm-256color" \
   LC_ALL="C.UTF-8" \
@@ -43,6 +44,7 @@ RUN \
   tar xf \
     /tmp/kopia.tar.gz -C \
     /app/kopia --strip-components=1 && \
+  printf "Version: ${VERSION}\nBuild-date: ${BUILD_DATE}" > /build_version && \
   echo "**** cleanup ****" && \
   rm -rf \
     $HOME/.cache \
