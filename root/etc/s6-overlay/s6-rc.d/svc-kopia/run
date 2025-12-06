@@ -12,7 +12,9 @@ if [[ ${KOPIA_HTTPS,,} == "true" ]]; then
             --address=0.0.0.0:51515 \
             --refresh-interval="${REFRESH_INTERVAL:-300s}" \
             --server-username="${KOPIA_UI_USERNAME:-kopia}" \
-            --server-password="${KOPIA_UI_PASSWORD}"
+            --server-password="${KOPIA_UI_PASSWORD}" \
+            --server-control-username="${KOPIA_SERVER_USERNAME:-kopia}" \
+            --server-control-password="${KOPIA_SERVER_PASSWORD}"
 else
     exec \
         s6-notifyoncheck -d -n 300 -w 1000 \
@@ -23,5 +25,7 @@ else
             --address=0.0.0.0:51515 \
             --refresh-interval="${REFRESH_INTERVAL:-300s}" \
             --server-username="${KOPIA_UI_USERNAME:-kopia}" \
-            --server-password="${KOPIA_UI_PASSWORD}"
+            --server-password="${KOPIA_UI_PASSWORD}"\
+            --server-control-username="${KOPIA_SERVER_USERNAME:-kopia}" \
+            --server-control-password="${KOPIA_SERVER_PASSWORD}"
 fi

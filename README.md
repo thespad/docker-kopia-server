@@ -58,6 +58,8 @@ services:
       - KOPIA_HTTPS=true # Optional
       - KOPIA_UI_USERNAME=${KOPIA_USERNAME}
       - KOPIA_UI_PASSWORD=${KOPIA_PASSWORD}
+      - KOPIA_SERVER_USERNAME=${KOPIA_SERVER_USERNAME}
+      - KOPIA_SERVER_PASSWORD=${KOPIA_SERVER_USERNAME}
       - KOPIA_PASSWORD=${KOPIA_REPO_PASSWORD}
       - REFRESH_INTERVAL= # Optional
     volumes:
@@ -87,6 +89,8 @@ docker run -d \
   -e KOPIA_HTTPS=true `#Optional` \
   -e KOPIA_UI_USERNAME=${KOPIA_USERNAME} \
   -e KOPIA_UI_PASSWORD=${KOPIA_PASSWORD} \
+  -e KOPIA_SERVER_USERNAME=${KOPIA_SERVER_USERNAME}
+  -e KOPIA_SERVER_PASSWORD=${KOPIA_SERVER_USERNAME}
   -e KOPIA_PASSWORD=${KOPIA_REPO_PASSWORD} \
   -e REFRESH_INTERVAL= `#optional` \
   -p 51515:51515 \
@@ -112,9 +116,11 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e PUID=0` | for UserID - see below for explanation. |
 | `-e PGID=0` | for GroupID - see below for explanation. |
 | `-e TZ=Europe/London` | Specify a timezone to use e.g. Europe/London. |
-| `-e KOPIA_HTTPS=` | Set to `true` to enable self-signed TLS for Web UI (require for remote client connections). |
+| `-e KOPIA_HTTPS=` | Set to `true` to enable self-signed TLS for Web UI (required for remote client connections). |
 | `-e KOPIA_UI_USERNAME=` | Web UI username. |
 | `-e KOPIA_UI_PASSWORD=` | Web UI password. |
+| `-e KOPIA_SERVER_USERNAME=` | Server control username. |
+| `-e KOPIA_SERVER_PASSWORD=` | Server control password. |
 | `-e KOPIA_PASSWORD=` | Password for connecting to backup repository. |
 | `-e REFRESH_INTERVAL=` | Repository refesh interval. Increase if using metered cloud storage. Specify in h/m/s. Defaults to `300s`. |
 | `-v /config` | Contains all relevant configuration files. |
@@ -207,6 +213,7 @@ docker run --rm --privileged lscr.io/linuxserver/qemu-static --reset
 
 ## Versions
 
+* **06.12.25:** - Rebase to Alpine 3.22.
 * **25.07.25:** - Rebase to Alpine 3.22.
 * **24.01.25:** - Rebase to Alpine 3.21.
 * **26.05.24:** - Rebase to Alpine 3.20.
